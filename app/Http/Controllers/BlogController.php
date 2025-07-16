@@ -60,15 +60,16 @@ class BlogController extends Controller
         $imagePaths = [];
         if ($request->hasFile('image')) {
             foreach ($request->file('image') as $image) {
-                $imagePaths[] = $image->store('blogs', 'public');
+                // $imagePaths[] = ;
+                array_push($imagePaths,$image->store('blogs', 'public') );
             }
         }
-
+        // dd($imagePaths);
         Blog::create([
             'user_id' => auth()->id(),
             'title' => $request->title,
             'description' => $request->description,
-            'image' => $imagePaths,
+            'image' =>$imagePaths,
             'tags' => $request->tags,
         ]);
 
@@ -125,7 +126,8 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        User::findOrFail($blog)->delete();
+        
+        $blog->delete();
         return response()->json(['success' => true]);
         // return redirect()->route('blogs.index')->with('success', 'Blog deleted successfully.');
     }

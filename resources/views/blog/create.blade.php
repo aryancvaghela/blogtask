@@ -30,7 +30,7 @@
 
         <div class="form-group mb-3">
             <label>Blog Images (Multiple)</label>
-            <input type="file" name="images[]" class="form-control" multiple>
+            <input type="file" name="image[]" class="form-control" multiple>
         </div>
 
         <button type="submit" class="btn btn-primary">Create</button>
